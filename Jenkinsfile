@@ -6,6 +6,7 @@ pipeline {
         stage('Clone') {
             steps {
                 echo 'Cloning repository...'
+                git 'https://github.com/abhijeetshirke61/Tour-Management-System.git'
             }
         }
 
@@ -21,9 +22,13 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to XAMPP') {
             steps {
-                echo 'Deploying project...'
+                echo 'Deploying to XAMPP htdocs...'
+
+                bat '''
+                xcopy /E /I /Y * C:\\xampp\\htdocs\\tour
+                '''
             }
         }
 
